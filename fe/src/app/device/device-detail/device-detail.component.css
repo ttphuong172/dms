@@ -1,0 +1,10 @@
+.configuration:not(:last-child):after{
+  content:', ';
+}
+.navbar-expand-md .navbar-collapse{
+  justify-content: flex-end;
+}
+.navbar{
+  justify-content: flex-end;
+}
+

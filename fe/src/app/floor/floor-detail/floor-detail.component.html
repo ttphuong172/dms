@@ -1,0 +1,51 @@
+<div *ngIf="floor">
+  <h3>Floor: {{floor.name}}</h3>
+  <span style="font-weight: bold">Room Quantity</span>: {{floor.roomQuantity}}
+  <br>
+  <span style="font-weight: bold">Device Quantity</span>: {{floor.deviceQuantity}}
+  <br>
+  <span style="font-weight: bold">Statistic Device</span>:<span *ngFor="let statisticDevice of floor.statisticDeviceList" class="configuration">
+                  {{statisticDevice}}
+  </span>
+</div>
+<div style="margin-bottom: 10px" class="row" *ngIf="floor">
+  <div style="padding-left: 10px" class="col">
+    <button style="padding: 6px;width: 100%" class="btn btn-outline-dark" [routerLink]="['/campus/detail/' + floor.campus.id]">
+      Back
+    </button>
+  </div>
+  <div class="col"></div>
+  <div class="col"></div>
+  <div class="col"></div>
+  <div class="col"></div>
+  <div class="col">
+    <button style="width: 100%;padding: 6px" class="btn btn-primary" [routerLink]="['/rooms/add/'+ floor.id]">Add</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4" *ngFor="let rooomDTO of roomDTOList" style="padding: 10px">
+    <div class="row" style="width: 100%; min-height: 80px;border: 1px solid skyblue">
+      <div class="col-4" style="background-color:#0e1c42;color: #d5a520">
+        <p style="text-align: center;padding-top: 30px; font-weight: bold">
+          {{rooomDTO.name}}
+        </p>
+      </div>
+      <div class="col-8">
+        <ul style="font-size: 12px">
+          <a [routerLink]="['/rooms/detail/' + rooomDTO.id]">
+            <li><span style="font-weight: bold">Device Quantity</span>: {{rooomDTO.deviceQuantity}}</li>
+            <li>
+              <span style="font-weight: bold">Statistic Device</span>:<span *ngFor="let statisticDevice of rooomDTO.statisticDeviceList" class="configuration">
+                  {{statisticDevice}}
+                </span>
+            </li>
+          </a>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

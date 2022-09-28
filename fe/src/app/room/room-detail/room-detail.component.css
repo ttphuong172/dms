@@ -1,0 +1,11 @@
+.configuration:not(:last-child):after{
+  content:', ';
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+.count:not(:last-child):after{
+  content:', ';
+}
+

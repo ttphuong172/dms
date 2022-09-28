@@ -1,0 +1,64 @@
+<h3>Transfer Detail</h3>
+<div class="row">
+  <div class="col-md-2">
+    <button [routerLink]="['/transfers']" style="width: 100%" class="btn btn-light">Back</button>
+  </div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2">
+    <button style="width: 100%" class="btn btn-light" (click)="printDelivery()">
+      Print Delivery
+    </button>
+  </div>
+  <div class="col-md-2">
+<!--    <button style="width: 100%" class="btn btn-light" (click)="printLoan()">-->
+<!--      <i class="fa fa-file-pdf-o" style="color:red"></i>-->
+<!--      Print Loan Slip-->
+<!--    </button>-->
+  </div>
+</div>
+<div *ngIf="transfer">
+<div class="row" style="font-weight: bold">
+  <div class="col-3">ID</div>
+  <div class="col-9">{{transfer.id}}</div>
+</div>
+<div class="row" style="font-weight: bold">
+  <div class="col-3">Transfer Date</div>
+  <div class="col-9">{{transfer.transferDate}}</div>
+</div>
+<div class="row" style="font-weight: bold">
+  <div class="col-3">Destination Room</div>
+  <div class="col-9">{{transfer.room.name}} - {{transfer.room.floor.name}}</div>
+</div>
+  <div class="row" style="font-weight: bold">
+    <div class="col-3">Evidence</div>
+    <a href="{{transfer.evidence}}" target="_blank">
+    <img src="{{transfer.evidence}}" alt="" style="width: 50px">
+    </a>
+  </div>
+
+  <br>
+<p style="font-weight: bold">List Device</p>
+<table class="table table-bordered">
+  <thead style="text-align: center">
+    <th>Order</th>
+    <th>Device ID</th>
+    <th>Category</th>
+    <th>Brand</th>
+    <th>Model</th>
+    <th>Source Room</th>
+
+  </thead>
+  <tbody style="text-align: center">
+  <tr *ngFor="let transferDevice of transfer.transferDeviceList, index as i">
+    <td>{{i + 1}}</td>
+    <td>{{transferDevice.device.id}}</td>
+    <td>{{transferDevice.device.category.name}}</td>
+    <td>{{transferDevice.device.brand}}</td>
+    <td>{{transferDevice.device.model}}</td>
+    <td>{{transferDevice.room.name}}-{{transferDevice.room.floor.name}}</td>
+  </tr>
+  </tbody>
+</table>
+</div>

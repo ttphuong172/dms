@@ -1,0 +1,135 @@
+<h3>Add New Transfer</h3>
+<div class="row" style="margin-bottom: 10px">
+  <div class="col-md-2">
+    <button [routerLink]="['/transfers']" style="width: 100%" class="btn btn-light">Back</button>
+  </div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+</div>
+<form [formGroup]="transferForm">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row" style="margin-bottom: 5px">
+        <div class="col-md-3">
+          <label>Transfer Date</label>
+        </div>
+        <div class="col-md-9">
+          <input type="date" max="{{date | date:'yyyy-MM-dd'}}" class="form-control" formControlName="transferDate">
+        </div>
+      </div>
+      <fieldset>
+        <legend>Destination</legend>
+        <div class="row" style="margin-bottom: 5px">
+          <div class="col-md-3">
+            <label>Campus</label>
+          </div>
+          <div class="col-md-9">
+            <select name="" class="form-control" (change)="loadFloor($event)">
+              <option value="">Choose a campus</option>
+              <option *ngFor="let campus of campusList" [ngValue]="campus">{{campus.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 5px">
+          <div class="col-md-3">
+            <label>Floor</label>
+          </div>
+          <div class="col-md-9">
+            <select name="" class="form-control" (change)="loadRoom($event)">
+              <option value="">Choose a floor</option>
+              <option *ngFor="let floor of floorList" [ngValue]="floor">{{floor.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Room</label>
+          </div>
+          <div class="col-md-9">
+            <select name="" formControlName="room" class="form-control">
+              <option value="">Choose a room</option>
+              <option *ngFor="let room of roomList" [ngValue]="room">{{room.name}}</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="row col-md-6" style="background-color: #0e1c42">
+      <div class="col-6">
+        <div style="background-color: #d5a520">
+          <div >
+            <webcam [height]="150" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+          </div>
+
+          <button class="btn btn-success" (click)="triggerSnapshot();"><i class="fa fa-camera"></i></button>
+        </div>
+
+
+        <!--  <input hidden type="text" formControlName="evidence" #username>-->
+        <!--  <img src="{{username.value}}" alt="" style="height: 150px">-->
+      </div>
+      <div class="col-6">
+        <img src="{{captureImage}}" alt="" style="height: 150px">
+      </div>
+
+      <!--      <div>-->
+      <!--        <input type="file" id="img" name="img" accept="image/*" (change)="selectFile($event)">-->
+      <!--      </div>-->
+    </div>
+  </div>
+
+
+</form>
+<div>Scan Device ID</div>
+<div>
+  <input type="text" class="form-control" (keyup.enter)="searchDevice($event)" [(ngModel)]="deviceId">
+</div>
+<br>
+<p>List Device</p>
+<table class="table table-bordered">
+  <thead style="text-align: center">
+  <th>Order</th>
+  <th>Device ID</th>
+  <th>Use Date</th>
+  <th>Category</th>
+  <th>Brand</th>
+  <th>Model</th>
+  <th>Room</th>
+  <th>Floor</th>
+  <th>Campus</th>
+  </thead>
+  <tbody style="text-align: center">
+  <tr *ngFor="let device of deviceList, index as i">
+    <td>{{i + 1}}</td>
+    <td>{{device.id}}</td>
+    <td>{{device.useDate}}</td>
+    <td>{{device.category.name}}</td>
+    <td>{{device.brand}}</td>
+    <td>{{device.model}}</td>
+    <td>{{device.room.name}}</td>
+    <td>{{device.floor.name}}</td>
+    <td>{{device.campus.name}}</td>
+    <td style="text-align: center">
+      <button (click)=deteleDevice(device) style="border-color: #dc3545; background-color: #dc3545; color: white"><i
+        class="fa fa-trash"></i></button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="row">
+  <div class="col-md -2"></div>
+  <div class="col-md -2"></div>
+  <div class="col-md -2"></div>
+  <div class="col-md -2"></div>
+  <div class="col-md -2"></div>
+  <div class="col-md -2">
+    <button [disabled]="!transferForm.valid" style="width: 100%" class="btn btn-primary" (click)="transfer()">Transfer
+    </button>
+  </div>
+</div>
+
+{{transferForm.value | json}}

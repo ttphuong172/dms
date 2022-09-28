@@ -1,0 +1,45 @@
+<h3>Transfer History</h3>
+<div class="row" style="margin-bottom: 10px">
+  <div class="col-md-2">
+    <button [routerLink]="['add']" class="btn btn-light" style="width: 100%">New Transfer</button>
+  </div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+</div>
+<table class="table table-bordered">
+  <thead style="background-color: #0e1c42; color: white" >
+  <th style="text-align: center">Order</th>
+  <th style="text-align: center">Transfer Date</th>
+  <th style="text-align: center">Source Room</th>
+  <th style="text-align: center">Destination Room</th>
+  <th style="text-align: center">List Device</th>
+  <th style="text-align: center">Detail</th>
+
+  </thead>
+  <tbody style="font-size: 12px">
+  <tr *ngFor="let transfer of transferList | paginate: { itemsPerPage: 10, currentPage: p }, index as i">
+    <td style="text-align: center">{{i + 1}}</td>
+    <td style="text-align: center">{{transfer.transferDate}}</td>
+    <td></td>
+    <td style="text-align: center">{{transfer.room.name}}-{{transfer.room.floor.name}}</td>
+    <td>
+      <span *ngFor="let transfer of transfer.transferDeviceList">
+        <a [routerLink]="['/devices/detail/'+ transfer.device.id]">
+          <span>{{transfer.device.id}} </span>
+        </a>
+
+      </span>
+    </td>
+    <td style="text-align: center">
+      <button class="btn btn-light" [routerLink]="['detail/' + transfer.id]">Detail</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div style="text-align: right">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+

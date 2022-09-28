@@ -1,0 +1,113 @@
+ <h3>Mantain</h3>
+    <div class="row" style="padding-bottom: 6px">
+      <div class="col">
+        <button style="width: 100%;padding: 6px" class="btn btn-outline-dark" [routerLink]="['/devices/detail/' + deviceId]">Back
+        </button>
+      </div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Detail Device</h4>
+        <table *ngIf="device" class="table table-bordered">
+          <tr>
+            <th>Configuration</th>
+            <th>Detail</th>
+          </tr>
+          <tr>
+            <td>ID</td>
+            <td>{{device.id}}</td>
+          </tr>
+          <tr>
+            <td>Category</td>
+            <td>{{device.category.name}}</td>
+          </tr>
+          <tr>
+            <td>Use Date</td>
+            <td>{{device.useDate}}</td>
+          </tr>
+          <tr>
+            <td>Brand</td>
+            <td>{{device.brand}}</td>
+          </tr>
+          <tr>
+            <td>Model</td>
+            <td>{{device.model}}</td>
+          </tr>
+          <tr>
+            <td>Serial</td>
+            <td>{{device.serial}}</td>
+          </tr>
+          <tr>
+            <td>Configuration</td>
+            <td>
+        <span class="configuration" *ngFor="let configuration of device.configurationList">{{configuration.type.name}}
+          : {{configuration.detail}}
+        </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Room</td>
+            <td>{{device.room.name}}</td>
+          </tr>
+          <tr>
+            <td>Floor</td>
+            <td>{{device.floor.name}}</td>
+          </tr>
+          <tr>
+            <td>Campus</td>
+            <td>{{device.campus.name}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <h4>Room Destination</h4>
+        <form [formGroup]="mantainRequestDTOForm">
+          <div style="margin-top: 5px" class="row">
+            <div class="col-md-3">
+              <label>Mantain Date</label>
+            </div>
+            <div class="col-md-9">
+              <input type="date"  max="{{date | date:'yyyy-MM-dd'}}" class="form-control" formControlName="mantainDate">
+            </div>
+          </div>
+
+          <div style="margin-top: 5px" class="row">
+            <div class="col-md-3">
+              <label>Mantain Content</label>
+            </div>
+            <div class="col-md-9">
+              <textarea rows="5" formControlName="contentMantain" class="form-control">
+              </textarea>
+            </div>
+          </div>
+
+          <div style="margin-top: 5px" class="row">
+            <div class="col-md-3">
+              <label>Person In Charge</label>
+            </div>
+            <div class="col-md-9">
+              <input type="text" formControlName="personName" class="form-control">
+            </div>
+          </div>
+
+
+        </form>
+        <div class="row" style="margin-top: 20px">
+          <div class="col-md-3"></div>
+          <div class="col-md-3"></div>
+          <div class="col-md-3"></div>
+          <div class="col-md-3">
+            <button style="padding: 6px;width: 100%" class="btn btn-primary" [disabled]="!mantainRequestDTOForm.valid" (click)="mantain()">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--{{mantainRequestDTOForm.value | json}}-->

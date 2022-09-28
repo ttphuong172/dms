@@ -1,0 +1,39 @@
+<h3>LIST OF CAMPUS</h3>
+<span *ngIf="org">
+  <span style="font-weight: bold">Campus Quantity</span>: {{org.campusQuantity}}
+  <br>
+   <span style="font-weight: bold">Floor Quantity</span>: {{org.floorQuantity}}
+  <br>
+     <span style="font-weight: bold">Room Quantity</span>: {{org.roomQuantity}}
+  <br>
+   <span style="font-weight: bold">Device Quantity</span>: {{org.deviceQuantity}}
+  <br>
+  <span style="font-weight: bold">Statistic Device</span>: <span *ngFor="let statisticDevice of org.statisticDeviceList" class="configuration">{{statisticDevice}}</span>
+</span>
+<div class="row">
+  <div class="col-md-6" *ngFor="let campusDTO of campusDTOList" style="padding: 10px">
+    <div class="row" style="width: 100%;min-height: 150px;border: 1px solid skyblue">
+      <div class="col-4" style="background-color:#0e1c42;color: #d5a520">
+        <p style="text-align: center;padding-top: 50px; font-weight: bold">{{campusDTO.name}}</p>
+      </div>
+      <div class="col-8">
+        <ul style="font-size: 12px">
+          <a [routerLink]="['detail/' + campusDTO.id]">
+            <li><span style="font-weight: bold">Floor Quantity</span>: {{campusDTO.floorQuantity}}</li>
+
+            <li><span style="font-weight: bold">Room Quantity</span>: {{campusDTO.roomQuantity}}</li>
+            <li><span style="font-weight: bold">Device Quantity</span>: {{campusDTO.deviceQuantity}}</li>
+            <li>
+              <span style="font-weight: bold">Statistic Device</span>:<span
+              *ngFor="let statisticDevice of campusDTO.statisticDeviceList" class="configuration">
+                  {{statisticDevice}}
+                </span>
+            </li>
+          </a>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+

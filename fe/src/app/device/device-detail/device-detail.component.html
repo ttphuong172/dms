@@ -1,0 +1,155 @@
+ <div style="display: flex;justify-content: space-between">
+      <h3>Detail of Device</h3>
+      <div *ngIf="device">
+      </div>
+    </div>
+    <div *ngIf="device">
+      <p style="font-size: 20px">Room:{{device.room.name}}-{{device.floor.name}}</p>
+    </div>
+
+<nav class="navbar navbar-expand-md bg-light navbar-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar1" style="background-color: #d5a520">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar1">
+    <ul class="navbar-nav" *ngIf="device">
+      <li class="nav-item" >
+        <a class="nav-link" [routerLink]="['/rooms/detail/' + device.room.id]" style="color: #0e1c42;font-size: 18px">Room Detail</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/devices']" style="color: #0e1c42;font-size: 18px">List Device</a>
+      </li>
+      <li>
+        <a class="nav-link" [routerLink]="['/devices/transfers/'+ device.id]" style="color: #0e1c42;font-size: 18px">Transfer</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/devices/mantain/'+ device.id]" style="color: #0e1c42;font-size: 18px">Mantain</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/devices/edit/' + device.id]" style="color: #0e1c42;font-size: 18px">Edit</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="openDialogDelete(device)" style="color: #0e1c42;font-size: 18px">Delete</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="table-responsive">
+  <table *ngIf="device" class="table table-bordered">
+    <tr>
+      <th>Configuration</th>
+      <th>Detail</th>
+    </tr>
+    <tr>
+      <td>ID</td>
+      <td>{{device.id}}</td>
+    </tr>
+    <tr>
+      <td>Category</td>
+      <td>{{device.category.name}}</td>
+    </tr>
+    <tr>
+      <td>Use Date</td>
+      <td>{{device.useDate}}</td>
+    </tr>
+    <tr>
+      <td>Brand</td>
+      <td>{{device.brand}}</td>
+    </tr>
+    <tr>
+      <td>Model</td>
+      <td>{{device.model}}</td>
+    </tr>
+    <tr>
+      <td>Serial</td>
+      <td>{{device.serial}}</td>
+    </tr>
+    <tr>
+      <td>Note</td>
+      <td>{{device.note}}</td>
+    </tr>
+    <tr>
+      <td>Configaration</td>
+      <td>
+        <span class="configuration" *ngFor="let configuration of device.configurationList">{{configuration.type.name}}
+          : {{configuration.detail}}  <span *ngIf="configuration.setDate">({{configuration.setDate}})</span>
+        </span>
+      </td>
+    </tr>
+
+    <tr [hidden]="!device.transferDeviceList.length">
+      <td>Transfer History</td>
+      <td>
+        <div class="table-responsive">
+          <table class="table table-bordered" style="font-size: 14px">
+            <thead>
+            <th style="text-align: center">Order</th>
+            <th style="text-align: center">Transfer Date</th>
+            <th>Room Source</th>
+            <th>Room Destination</th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let transferDevice of device.transferDeviceList, index as i">
+              <td style="text-align: center">{{i +1}}</td>
+              <td style="text-align: center">{{transferDevice.transfer.transferDate}}</td>
+              <td>{{transferDevice.room.name}}-{{transferDevice.room.floor.name}}</td>
+              <td>{{transferDevice.transfer.room.name}}-{{transferDevice.transfer.room.floor.name}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </td>
+    </tr>
+
+
+    <tr [hidden]="!device.mantainList.length">
+      <td>Mantain History</td>
+      <td>
+        <div class="table-responsive">
+          <table class="table table-bordered" style="font-size: 14px">
+            <thead>
+            <th style="text-align: center">Order</th>
+            <th>Mantain Date</th>
+            <th>Mantain Content</th>
+            <th>Person in Charge</th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let mantain of device.mantainList,index as i">
+              <td style="text-align: center">{{i+1}}</td>
+              <td>{{mantain.mantainDate}}</td>
+              <td>{{mantain.mantainContent}}</td>
+              <td>{{mantain.personName}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Room</td>
+      <td>{{device.room.name}}</td>
+    </tr>
+    <tr>
+      <td>Floor</td>
+      <td>{{device.floor.name}}</td>
+    </tr>
+    <tr>
+      <td>Campus</td>
+      <td>{{device.campus.name}}</td>
+    </tr>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

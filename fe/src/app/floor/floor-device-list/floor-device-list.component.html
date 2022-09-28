@@ -1,0 +1,44 @@
+<!--<div class="row">-->
+<!--  <div class="col-md-2"></div>-->
+<!--  <div class="col-md-8">-->
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let device of deviceList" style="padding: 10px">
+        <a [routerLink]="['/devices/detail/' + device.id]">
+          <div class="row" style="width: 100%; min-height: 150px; border: 1px solid black">
+            <div style="color: black; padding:20px 0 0 0;border: 1px solid black" class="col-4">
+              <div style="font-size: 14px;" >
+                <p style="text-align: center">
+                  <img src="{{device.category.icon}}" alt="" style="height: 50px">
+                </p>
+                <p style="text-align: center; margin-bottom: 0;font-weight: bold;font-size: 20px">
+                  {{device.id}}
+                </p>
+              </div>
+            </div>
+            <div style="padding-left: 5px; border: 1px solid black" class="col-8">
+              <p style="text-align: center;margin-bottom: 0px;font-weight: bold;font-size: 16px">
+                {{device.brand}}-{{device.model}}
+              </p>
+              <span style="font-size: 12px">
+                Use date: {{device.useDate}}
+              </span>
+              <br>
+              <span style="font-size: 12px">
+                Serial: {{device.serial}}
+              </span>
+              <br>
+              <span  style="font-size: 12px" class="configuration"
+                     *ngFor="let configuration of device.configurationList">{{configuration.type.name}}: {{configuration.detail}}
+              </span>
+              <br>
+              <span style="font-size: 12px">
+                Room: {{device.room.name}}
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+<!--  </div>-->
+<!--  <div class="col-md-2"></div>-->
+<!--</div>-->

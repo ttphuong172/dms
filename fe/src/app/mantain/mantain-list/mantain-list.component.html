@@ -1,0 +1,39 @@
+<h3>Mantain History</h3>
+<table class="table table-bordered" >
+  <thead style="background-color: #0e1c42; color: white">
+  <th style="text-align: center">Order</th>
+  <th style="text-align: center">Mantain Date</th>
+  <th>Mantain Content</th>
+  <th style="text-align: center">Category</th>
+  <th style="text-align: center">Device</th>
+  <th style="text-align: center">Room</th>
+  <th style="text-align: center">Floor</th>
+  <th style="text-align: center">Campus</th>
+  </thead>
+  <tbody style="font-size: 12px">
+  <tr *ngFor="let mantain of mantainList |  paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+    <td style="text-align: center">{{i + 1}}</td>
+    <td style="text-align: center">{{mantain.mantainDate}}</td>
+
+    <td>{{mantain.mantainContent}}</td>
+    <td style="text-align: center">{{mantain.mantainDevice.category.name}}</td>
+    <td style="text-align: center">
+      <a [routerLink]="['/devices/detail/' + mantain.mantainDevice.id]">
+      {{mantain.mantainDevice.id}}
+      </a>
+    </td>
+
+    <td style="text-align: center">{{mantain.mantainDevice.room.name}}</td>
+    <td style="text-align: center">{{mantain.mantainDevice.floor.name}}</td>
+    <td style="text-align: center">{{mantain.mantainDevice.campus.name}}</td>
+  </tr>
+  </tbody>
+</table>
+<div style="text-align: right">
+
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
+</div>
+
+

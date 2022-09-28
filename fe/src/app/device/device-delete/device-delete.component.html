@@ -1,0 +1,24 @@
+<div>
+  <p style="font-size: 20px">Delete Device?</p>
+</div>
+<div style="margin-top: 20px;margin-bottom: 20px">
+  <p style="font-size: 16px">
+    Deleting a device will permanently remove it from your system
+  </p>
+</div>
+<div class="row">
+
+  <div class="col-md-4">
+
+  </div>
+  <div class="col-md-4" style="margin-bottom: 10px">
+    <button style="width: 100%" class="btn btn-outline-dark" (click)="closeDialogDelete()">
+      No, Keep Device
+    </button>
+  </div>
+  <div class="col-md-4">
+    <button style="width: 100%" class="btn btn-danger" (click)="delete(data)">
+      Yes, Delete Device
+    </button>
+  </div>
+</div>

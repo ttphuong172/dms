@@ -1,0 +1,42 @@
+<h3>Add New Room</h3>
+<div style="margin-bottom: 10px" class="row">
+  <div class="col" style="padding: 10px">
+    <button style="width: 100%;padding: 6px" class="btn btn-outline-dark" [routerLink]="['/floors/detail/'+ floorId]">Back</button>
+  </div>
+  <div class="col"></div>
+  <div class="col"></div>
+  <div class="col"></div>
+  <div class="col"></div>
+  <div class="col"></div>
+</div>
+<form [formGroup]="roomForm">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-3">
+          <label>Name</label>
+        </div>
+        <div class="col-md-9">
+          <input type="text" class="form-control" formControlName="name">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+
+</form>
+
+<div class="row" style="margin-top: 20px">
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2">
+    <button class="btn btn-primary" style="width: 100%" (click)="save()">Save</button>
+  </div>
+</div>
+
+
+<!--{{roomForm.value | json}}-->
+

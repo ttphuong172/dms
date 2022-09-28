@@ -1,0 +1,57 @@
+<div *ngIf="campus">
+  <h3>Campus: {{campus.name}}</h3>
+  <span style="font-weight: bold">Floor Quantity</span>: {{campus.floorQuantity}}
+  <br>
+  <span style="font-weight: bold">Room Quantity</span>: {{campus.roomQuantity}}
+  <br>
+  <span style="font-weight: bold">Device Quantity</span>: {{campus.deviceQuantity}}
+  <br>
+  <span style="font-weight: bold">Statistic Device</span>:<span
+  *ngFor="let statisticDevice of campus.statisticDeviceList" class="configuration">
+                  {{statisticDevice}}
+  </span>
+</div>
+<div style="margin-bottom: 10px" class="row">
+  <div class="col" style="padding: 10px">
+    <button style="width: 100%;padding: 6px" class="btn btn-outline-dark" [routerLink]="['/campus']">Back</button>
+  </div>
+  <div class="col"></div>
+  <div class="col"></div>
+  <div class="col"></div>
+  <div class="col"></div>
+  <div class="col" style="padding-right: 10px" *ngIf="campus">
+    <button style="width: 100%;padding: 6px" class="btn btn-primary" [routerLink]="['/floors/add/' + campus.id]">Add
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4" *ngFor="let floorDTO of floorDTOList" style="padding: 10px">
+    <div class="row" style="width: 100%;min-height: 150px;border: 1px solid skyblue">
+      <div class="col-4" style="background-color:#0e1c42;color: #d5a520">
+        <p style="text-align: center;padding-top: 50px; font-weight: bold">
+          {{floorDTO.name}}
+        </p>
+      </div>
+      <div class="col-8">
+        <ul style="font-size: 12px">
+          <a [routerLink]="['/floors/detail/' + floorDTO.id]">
+            <li><span style="font-weight: bold">Room Quantity</span>: {{floorDTO.roomQuantity}}</li>
+
+
+            <li><span style="font-weight: bold">Device Quantity</span>: {{floorDTO.deviceQuantity}}</li>
+
+            <li>
+              <span style="font-weight: bold">Statistic Device</span>: <span
+              *ngFor="let statisticDevice of floorDTO.statisticDeviceList" class="configuration">
+                  {{statisticDevice}}
+                </span>
+            </li>
+          </a>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

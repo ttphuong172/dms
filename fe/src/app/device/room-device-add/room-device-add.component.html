@@ -1,0 +1,147 @@
+<div class="container">
+  <h3>Add new device</h3>
+
+  <form [formGroup]="deviceForm">
+    <div style="margin-bottom: 10px" class="row" *ngIf="room">
+      <div style="padding-left: 10px" class="col">
+        <button style="padding: 6px;width: 100%" class="btn btn-outline-dark"
+                [routerLink]="['/rooms/detail/' + room.id]">Back
+        </button>
+      </div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-12" style="background-color: aliceblue">
+
+        <div style="margin-top: 5px" class="row">
+          <div class="col-md-3">
+            <label>ID</label>
+          </div>
+          <div class="col-md-9">
+            <input type="text" class="form-control" formControlName="id">
+          </div>
+        </div>
+
+        <div style="margin-top: 5px" class="row">
+          <div class="col-md-3">
+            <label>Category</label>
+          </div>
+          <div class="col-md-9">
+            <select name="" id="" class="form-control" formControlName="category">
+              <option value="">Choose a category</option>
+              <option *ngFor="let category of categoryList" [ngValue]="category">{{category.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-top: 5px" class="row">
+          <div class="col-md-3">
+            <label>Use Date</label>
+          </div>
+          <div class="col-md-9">
+            <input type="date" class="form-control" formControlName="useDate">
+          </div>
+        </div>
+
+        <div style="margin-top: 5px" class="row">
+          <div class="col-md-3">
+            <label>Brand</label>
+          </div>
+          <div class="col-md-9">
+            <input type="text" class="form-control" formControlName="brand">
+          </div>
+        </div>
+
+        <div style="margin-top: 5px" class="row">
+          <div class="col-md-3">
+            <label>Model</label>
+          </div>
+          <div class="col-md-9">
+            <input type="text" class="form-control" formControlName="model">
+          </div>
+        </div>
+
+        <div style="margin-top: 5px" class="row">
+          <div class="col-md-3">
+            <label>Serial</label>
+          </div>
+          <div class="col-md-9">
+            <input type="text" class="form-control" formControlName="serial">
+          </div>
+        </div>
+
+        <div style="margin-top: 5px" class="row">
+          <div class="col-md-3">
+            <label>Note</label>
+          </div>
+          <div class="col-md-9">
+            <input type="text" class="form-control" formControlName="note">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <label>Configuration</label>
+          </div>
+          <div class="col-md-9">
+            <div formArrayName="configurationList"
+                 *ngFor="let item of deviceForm.get('configurationList').controls; let i = index;">
+              <div>
+                <div [formGroupName]="i" class="row" style="margin-top: 5px">
+                  <div class="col-3">
+                    <select name="" formControlName="type" class="form-control">
+                      <option *ngFor="let type of typeList" [ngValue]="type">{{type.name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-3">
+                    <input class="form-control" formControlName="detail" placeholder="">
+                  </div>
+
+                  <div class="col-3">
+                    <input type="date" class="form-control" formControlName="setDate" placeholder="">
+                  </div>
+                  <div class="col-3" style="text-align: center">
+                    <button (click)="removeConfig(i)" class="btn btn-danger" style="width: 100%">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px">
+          <div class="col">
+            <button style="width: 100%" class="btn btn-primary" (click)="addConfig()">Add</button>
+          </div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </form>
+  <div class="row" style="margin-top: 20px">
+    <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+      <button class="btn btn-primary" style="width: 100%" (click)="save()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!--{{deviceForm.value | json}}-->
