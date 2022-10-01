@@ -86,6 +86,7 @@ public class FloorController {
 
     @PostMapping("")
     public ResponseEntity<String> save(@RequestBody Floor floor) {
+        floor.setName(floor.getName()+ "-" + floor.getCampus().getName());
         floorService.save(floor);
         return new ResponseEntity<>(HttpStatus.OK);
     }

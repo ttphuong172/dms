@@ -42,6 +42,7 @@ export class TransferAddComponent implements OnInit {
   transferForm = new FormGroup({
     transferDate: new FormControl((new Date()).toISOString().substring(0, 10)),
     room: new FormControl('', Validators.required),
+    personInCharge: new FormControl('', Validators.required),
     evidence: new FormControl('', Validators.required),
     deviceList: new FormControl('', Validators.required),
   })
