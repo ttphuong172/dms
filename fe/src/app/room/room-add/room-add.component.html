@@ -1,4 +1,4 @@
-<h3>Add New Room - Floor: {{floor.name}}</h3>
+<h3 *ngIf="floor">Add New Room - Floor: {{floor.name}}</h3>
 <div style="margin-bottom: 10px" class="row">
   <div class="col" style="padding: 10px">
     <button style="width: 100%;padding: 6px" class="btn btn-outline-dark" [routerLink]="['/floors/detail/'+ floorId]">Back</button>

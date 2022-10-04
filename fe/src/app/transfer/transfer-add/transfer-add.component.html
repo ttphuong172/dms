@@ -61,29 +61,30 @@
             <label>Person In Charge</label>
           </div>
           <div class="col-md-9">
-            <input type="text" class="form-control" formControlName="personInCharge">
+            <input type="text" placeholder="Example: Mr Phuong" class="form-control" formControlName="personInCharge">
           </div>
         </div>
 
       </fieldset>
     </div>
 
-    <div class="row col-md-6" style="background-color: #0e1c42">
-      <div class="col-6">
-        <div style="background-color: #d5a520">
+    <div class="row col-md-6">
+      <div class="col-md-6" style="text-align: center">
+        <div>
           <div >
-            <webcam [height]="150" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+            <webcam [height]="150" [width]="200" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
           </div>
-
-          <button class="btn btn-success" (click)="triggerSnapshot();"><i class="fa fa-camera"></i></button>
+          <div style="text-align: center">
+            <button class="btn btn-success" (click)="triggerSnapshot();"><i class="fa fa-camera"></i></button>
+          </div>
         </div>
 
 
         <!--  <input hidden type="text" formControlName="evidence" #username>-->
         <!--  <img src="{{username.value}}" alt="" style="height: 150px">-->
       </div>
-      <div class="col-6">
-        <img src="{{captureImage}}" alt="" style="height: 150px">
+      <div class="col-md-6" style="text-align: center">
+        <img src="{{captureImage}}" alt="" style="height: 150px;width: 200px">
       </div>
 
       <!--      <div>-->
@@ -100,36 +101,40 @@
 </div>
 <br>
 <p>List Device</p>
-<table class="table table-bordered">
-  <thead style="text-align: center">
-  <th>Order</th>
-  <th>Device ID</th>
-  <th>Use Date</th>
-  <th>Category</th>
-  <th>Brand</th>
-  <th>Model</th>
-  <th>Room</th>
-  <th>Floor</th>
-  <th>Campus</th>
-  </thead>
-  <tbody style="text-align: center">
-  <tr *ngFor="let device of deviceList, index as i">
-    <td>{{i + 1}}</td>
-    <td>{{device.id}}</td>
-    <td>{{device.useDate}}</td>
-    <td>{{device.category.name}}</td>
-    <td>{{device.brand}}</td>
-    <td>{{device.model}}</td>
-    <td>{{device.room.name}}</td>
-    <td>{{device.floor.name}}</td>
-    <td>{{device.campus.name}}</td>
-    <td style="text-align: center">
-      <button (click)=deteleDevice(device) style="border-color: #dc3545; background-color: #dc3545; color: white"><i
-        class="fa fa-trash"></i></button>
-    </td>
-  </tr>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead style="text-align: center">
+    <th>Order</th>
+    <th>Device ID</th>
+    <th>Use Date</th>
+    <th>Category</th>
+    <th>Brand</th>
+    <th>Model</th>
+    <th>Room</th>
+    <th>Floor</th>
+    <th>Campus</th>
+    <th>Act</th>
+    </thead>
+    <tbody style="text-align: center">
+    <tr *ngFor="let device of deviceList, index as i">
+      <td>{{i + 1}}</td>
+      <td>{{device.id}}</td>
+      <td>{{device.useDate}}</td>
+      <td>{{device.category.name}}</td>
+      <td>{{device.brand}}</td>
+      <td>{{device.model}}</td>
+      <td>{{device.room.name}}</td>
+      <td>{{device.floor.name}}</td>
+      <td>{{device.campus.name}}</td>
+      <td style="text-align: center">
+        <button (click)=deteleDevice(device) style="border-color: #dc3545; background-color: #dc3545; color: white"><i
+          class="fa fa-trash"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
 <div class="row">
   <div class="col-md -2"></div>
   <div class="col-md -2"></div>
@@ -142,4 +147,4 @@
   </div>
 </div>
 
-{{transferForm.value | json}}
+<!--{{transferForm.value | json}}-->

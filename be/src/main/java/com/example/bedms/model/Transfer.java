@@ -21,6 +21,8 @@ public class Transfer {
     private int id;
 
     private LocalDate transferDate;
+
+    @Column(columnDefinition="LONGTEXT")
     private String evidence;
 
     @ManyToOne

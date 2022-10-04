@@ -43,7 +43,7 @@ export class TransferAddComponent implements OnInit {
     transferDate: new FormControl((new Date()).toISOString().substring(0, 10)),
     room: new FormControl('', Validators.required),
     personInCharge: new FormControl('', Validators.required),
-    evidence: new FormControl('', Validators.required),
+    evidence: new FormControl(''),
     deviceList: new FormControl('', Validators.required),
   })
 
@@ -99,8 +99,8 @@ export class TransferAddComponent implements OnInit {
     this.webcamImage = webcamImage;
     this.captureImage = webcamImage!.imageAsDataUrl;
 
-    console.info('received webcam image', this.captureImage);
-    console.log(this.captureImage)
+    // console.info('received webcam image', this.captureImage);
+    // console.log(this.captureImage)
     this.transferForm.controls['evidence'].setValue(this.captureImage);
   }
 
