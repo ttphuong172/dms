@@ -88,6 +88,7 @@
             <th style="text-align: center">Transfer Date</th>
             <th>Room Source</th>
             <th>Room Destination</th>
+            <th>Person in Charge</th>
             </thead>
             <tbody>
             <tr *ngFor="let transferDevice of device.transferDeviceList, index as i">
@@ -95,6 +96,7 @@
               <td style="text-align: center">{{transferDevice.transfer.transferDate}}</td>
               <td>{{transferDevice.room.name}}-{{transferDevice.room.floor.name}}</td>
               <td>{{transferDevice.transfer.room.name}}-{{transferDevice.transfer.room.floor.name}}</td>
+              <td>{{transferDevice.transfer.personInCharge}}</td>
             </tr>
             </tbody>
           </table>

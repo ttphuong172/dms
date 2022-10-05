@@ -16,6 +16,7 @@
   <th style="text-align: center">Source Room</th>
   <th style="text-align: center">Destination Room</th>
   <th style="text-align: center">List Device</th>
+  <th style="text-align: center">Person In Charge</th>
   <th style="text-align: center">Detail</th>
 
   </thead>
@@ -33,6 +34,7 @@
 
       </span>
     </td>
+    <td>{{transfer.personInCharge}}</td>
     <td style="text-align: center">
       <button class="btn btn-light" [routerLink]="['detail/' + transfer.id]">Detail</button>
     </td>

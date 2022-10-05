@@ -29,7 +29,7 @@ export class DeviceDetailComponent implements OnInit {
           this.snackBar.open("Device not found", 'Undo', {duration: 1500});
         } else {
           this.device=data;
-          console.log(this.device)
+          // console.log(this.device)
         }
       }
     )
