@@ -15,6 +15,7 @@ import java.util.List;
 public class TransferRequest {
     private LocalDate transferDate;
     private String evidence;
+    private String personInCharge;
     private Room room;
     private List<Device> deviceList;
 }

@@ -26,42 +26,44 @@ public class TransferController {
     private DeviceService deviceService;
 
     @GetMapping("")
-    public ResponseEntity<List<TransferDTO>> findAll(){
-        List<Transfer> transferList=transferService.findAll();
+    public ResponseEntity<List<TransferDTO>> findAll() {
+        List<Transfer> transferList = transferService.findAll();
         List<TransferDTO> transferDTOList = new ArrayList<>();
-        for (int i=0;i<transferList.size();i++){
-            TransferDTO transferDTO= new TransferDTO();
+        for (int i = 0; i < transferList.size(); i++) {
+            TransferDTO transferDTO = new TransferDTO();
             transferDTO.setId(transferList.get(i).getId());
             transferDTO.setTransferDate(transferList.get(i).getTransferDate());
             transferDTO.setEvidence(transferList.get(i).getEvidence());
+            transferDTO.setPersonInCharge(transferList.get(i).getPersonInCharge());
             transferDTO.setRoom(transferList.get(i).getRoom());
             transferDTO.setTransferDeviceList(transferList.get(i).getTransferDeviceList());
             transferDTOList.add(transferDTO);
         }
-        Collections.sort(transferDTOList,(o1, o2)->o2.getTransferDate().compareTo(o1.getTransferDate()));
+        Collections.sort(transferDTOList, (o1, o2) -> o2.getTransferDate().compareTo(o1.getTransferDate()));
 //        Collections.sort(roomList, (o1, o2) -> o1.getName().compareTo(o2.getName()));
-        return new ResponseEntity<>(transferDTOList,HttpStatus.OK);
+        return new ResponseEntity<>(transferDTOList, HttpStatus.OK);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<TransferDTO> findById(@PathVariable int id){
-        Transfer transfer=transferService.findById(id);
+    public ResponseEntity<TransferDTO> findById(@PathVariable int id) {
+        Transfer transfer = transferService.findById(id);
         TransferDTO transferDTO = new TransferDTO();
         transferDTO.setId(transfer.getId());
         transferDTO.setTransferDate(transfer.getTransferDate());
         transferDTO.setEvidence(transfer.getEvidence());
         transferDTO.setRoom(transfer.getRoom());
         transferDTO.setTransferDeviceList(transfer.getTransferDeviceList());
-        return new ResponseEntity<>(transferDTO,HttpStatus.OK);
+        return new ResponseEntity<>(transferDTO, HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<String> save(@RequestBody TransferRequest transferRequest){
+    public ResponseEntity<String> save(@RequestBody TransferRequest transferRequest) {
         Transfer transfer = new Transfer();
         transfer.setTransferDate(transferRequest.getTransferDate());
         transfer.setEvidence(transferRequest.getEvidence());
+        transfer.setPersonInCharge(transferRequest.getPersonInCharge());
         List<TransferDevice> transferDeviceList = new ArrayList<>();
-        for (int i=0; i <transferRequest.getDeviceList().size();i++){
+        for (int i = 0; i < transferRequest.getDeviceList().size(); i++) {
             TransferDevice transferDevice = new TransferDevice();
             transferDevice.setTransfer(transfer);
             transferDevice.setRoom(transferRequest.getDeviceList().get(i).getRoom());

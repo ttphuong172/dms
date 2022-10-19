@@ -18,6 +18,7 @@ public class TransferDTO {
 
     private LocalDate transferDate;
     private String evidence;
+    private String personInCharge;
     private Room room;
 
     private List<TransferDevice> transferDeviceList;

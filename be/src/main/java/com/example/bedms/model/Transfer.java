@@ -25,11 +25,13 @@ public class Transfer {
     @Column(columnDefinition="LONGTEXT")
     private String evidence;
 
+    private String personInCharge;
+
     @ManyToOne
     @JoinColumn
     private Room room;
 
-    private String personInCharge;
+
 
     @OneToMany(mappedBy = "transfer",cascade = CascadeType.ALL)
     @JsonBackReference
