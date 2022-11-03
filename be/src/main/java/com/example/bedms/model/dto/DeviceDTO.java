@@ -22,6 +22,7 @@ public class DeviceDTO {
     private String serial;
     private String note;
     private List<Configuration> configurationList;
+    private String status;
     private Campus campus;
     private Floor floor;
     private Room room;

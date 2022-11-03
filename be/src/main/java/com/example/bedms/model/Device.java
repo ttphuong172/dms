@@ -33,6 +33,8 @@ public class Device {
     @CollectionTable(name = "configuration", joinColumns =@JoinColumn(name = "configurationId"))
     private List<Configuration> configurationList;
 
+    private String status;
+
     @ManyToOne
     @JoinColumn
     private Campus campus;

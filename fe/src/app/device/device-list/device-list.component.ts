@@ -149,6 +149,9 @@ export class DeviceListComponent implements OnInit {
     }, {text: "Configuration", alignment: "center"}, {text: "Room", alignment: "center"}, {
       text: "Floor",
       alignment: "center"
+    },{
+      text: "Status",
+      alignment: "center"
     }]];
 
     for (let i = 0; i < this.statisticDeviceDTO.deviceList.length; i++) {
@@ -172,15 +175,16 @@ export class DeviceListComponent implements OnInit {
       bodyTemp.push(configuration)
       bodyTemp.push({text: this.statisticDeviceDTO.deviceList[i].room.name, alignment: "center"})
       bodyTemp.push({text: this.statisticDeviceDTO.deviceList[i].room.floor.name, alignment: "center"})
+      bodyTemp.push({text: this.statisticDeviceDTO.deviceList[i].status, alignment: "center"})
 
       // @ts-ignore
       body.push(bodyTemp)
     }
 
     for (let j = 0; j < this.statisticDeviceDTO.statisticDeviceList.length; j++) {
-      console.log(this.statisticDeviceDTO.statisticDeviceList[j])
+      // console.log(this.statisticDeviceDTO.statisticDeviceList[j])
       this.result += this.statisticDeviceDTO.statisticDeviceList[j] + ', '
-      console.log(this.result);
+      // console.log(this.result);
     }
 
     let docDefinition = {
@@ -239,7 +243,7 @@ export class DeviceListComponent implements OnInit {
         },
         {
           table: {
-            widths: [50, 50, 50, 50, 50, 50, 50, 50, '*', 50, 50],
+            widths: [50, 50, 50, 50, 50, 50, 50, 50, '*', 50, 50, 50],
             // widths: [50,50,50],
             body: body
           },

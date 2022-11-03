@@ -60,6 +60,9 @@ public class DeviceController {
         if (deviceCurrent != null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
+//        Chỗ này chưa hay
+        device.setStatus("Good");
+
         deviceService.save(device);
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -80,6 +83,7 @@ public class DeviceController {
         deviceCurrent.setModel(device.getModel());
         deviceCurrent.setSerial(device.getSerial());
         deviceCurrent.setNote(device.getNote());
+        deviceCurrent.setStatus(device.getStatus());
         deviceCurrent.setConfigurationList(device.getConfigurationList());
         deviceCurrent.setCampus(device.getCampus());
         deviceCurrent.setFloor(device.getFloor());

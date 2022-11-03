@@ -202,7 +202,7 @@ export class TransferAddComponent implements OnInit {
         this.angularFireStorage.ref(path).getDownloadURL().subscribe(
           (data) => {
             this.url = data;
-            // console.log(this.url)
+            console.log(this.url)
             this.transferForm.controls['evidence'].setValue(this.url)
           }
         )
@@ -217,4 +217,6 @@ export class TransferAddComponent implements OnInit {
       }
     }
   }
+
+
 }

@@ -1,187 +1,200 @@
 <!--<div class="row" style="padding: 6px">-->
 <!--  <div class="col-md-2"></div>-->
 <!--  <div class="col-md-8">-->
-    <h3>Edit a device</h3>
-    <div class="row" style="padding-bottom: 6px">
-      <div class="col">
-        <button style="width: 100%;padding: 6px" class="btn btn-outline-dark" (click)="cancel()">Back
-        </button>
+<h3>Edit a device</h3>
+<div class="row" style="padding-bottom: 6px">
+  <div class="col">
+    <button style="width: 100%;padding: 6px" class="btn btn-outline-dark" (click)="cancel()">Back
+    </button>
+  </div>
+  <div class="col"></div>
+  <div class="col"></div>
+  <div class="col"></div>
+  <div class="col"></div>
+  <div class="col"></div>
+</div>
+<form [formGroup]="deviceForm">
+  <div class="row">
+    <div class="col-md-12">
+      <div style="margin-top: 5px" class="row">
+        <div class="col-md-3">
+          <label>ID</label>
+        </div>
+        <div class="col-md-9">
+          <input type="text" class="form-control" formControlName="id">
+        </div>
       </div>
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-    </div>
-    <form [formGroup]="deviceForm">
+
+      <div style="margin-top: 5px" class="row">
+        <div class="col-md-3">
+          <label>Category</label>
+        </div>
+        <div class="col-md-9">
+          <select name="" class="form-control" formControlName="category" [compareWith]="compareByID">
+            <option value="">Choose a category</option>
+            <option *ngFor="let category of categoryList" [ngValue]="category">{{category.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-top: 5px" class="row">
+        <div class="col-md-3">
+          <label>Use Date</label>
+        </div>
+        <div class="col-md-9">
+          <input type="date" class="form-control" formControlName="useDate">
+        </div>
+      </div>
+
+      <div style="margin-top: 5px" class="row">
+        <div class="col-md-3">
+          <label>Brand</label>
+        </div>
+        <div class="col-md-9">
+          <input type="text" class="form-control" formControlName="brand">
+        </div>
+      </div>
+
+      <div style="margin-top: 5px" class="row">
+        <div class="col-md-3">
+          <label>Model</label>
+        </div>
+        <div class="col-md-9">
+          <input type="text" class="form-control" formControlName="model">
+        </div>
+      </div>
+
+      <div style="margin-top: 5px" class="row">
+        <div class="col-md-3">
+          <label>Serial</label>
+        </div>
+        <div class="col-md-9">
+          <input type="text" class="form-control" formControlName="serial">
+        </div>
+      </div>
+
+      <div style="margin-top: 5px" class="row">
+        <div class="col-md-3">
+          <label>Note</label>
+        </div>
+        <div class="col-md-9">
+          <input type="text" class="form-control" formControlName="note">
+        </div>
+      </div>
+
+      <div style="margin-top: 5px" class="row">
+        <div class="col-md-3">
+          <label>Status</label>
+        </div>
+        <div class="col-md-9">
+          <!--              <input type="text" class="form-control" formControlName="status">-->
+          <select *ngIf="device" class="form-control" formControlName="status">
+            <option *ngFor="let status of statusList" [ngValue]="status"
+                    [selected]="device.status==status">{{status}}</option>
+          </select>
+        </div>
+      </div>
+
       <div class="row">
-        <div class="col-md-12">
-          <div style="margin-top: 5px" class="row">
-            <div class="col-md-3">
-              <label>ID</label>
-            </div>
-            <div class="col-md-9">
-              <input type="text" class="form-control" formControlName="id">
-            </div>
-          </div>
-
-          <div style="margin-top: 5px" class="row">
-            <div class="col-md-3">
-              <label>Category</label>
-            </div>
-            <div class="col-md-9">
-              <select name="" class="form-control" formControlName="category" [compareWith]="compareByID">
-                <option value="">Choose a category</option>
-                <option *ngFor="let category of categoryList" [ngValue]="category">{{category.name}}</option>
-              </select>
-            </div>
-          </div>
-
-          <div style="margin-top: 5px" class="row">
-            <div class="col-md-3">
-              <label>Use Date</label>
-            </div>
-            <div class="col-md-9">
-              <input type="date" class="form-control" formControlName="useDate">
-            </div>
-          </div>
-
-          <div style="margin-top: 5px" class="row">
-            <div class="col-md-3">
-              <label>Brand</label>
-            </div>
-            <div class="col-md-9">
-              <input type="text" class="form-control" formControlName="brand">
-            </div>
-          </div>
-
-          <div style="margin-top: 5px" class="row">
-            <div class="col-md-3">
-              <label>Model</label>
-            </div>
-            <div class="col-md-9">
-              <input type="text" class="form-control" formControlName="model">
-            </div>
-          </div>
-
-          <div style="margin-top: 5px" class="row">
-            <div class="col-md-3">
-              <label>Serial</label>
-            </div>
-            <div class="col-md-9">
-              <input type="text" class="form-control" formControlName="serial">
-            </div>
-          </div>
-
-          <div style="margin-top: 5px" class="row">
-            <div class="col-md-3">
-              <label>Note</label>
-            </div>
-            <div class="col-md-9">
-              <input type="text" class="form-control" formControlName="note">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-3">
-              <label>Configuration</label>
-            </div>
-            <div class="col-md-9">
-              <div formArrayName="configurationList"
-                   *ngFor="let item of deviceForm.get('configurationList').controls; let i = index;">
-                <div>
-                  <div [formGroupName]="i" class="row" style="margin-top: 5px">
-                    <div class="col-3" style="padding-right: 5px">
-                      <select name="" formControlName="type" class="form-control" [compareWith]="compareByID">
-                        <option *ngFor="let type of typeList" [ngValue]="type">{{type.name}}</option>
-                      </select>
-                    </div>
-
-                    <div class="col-3" style="padding-right: 5px">
-                      <input class="form-control" formControlName="detail" placeholder="">
-                    </div>
-
-                    <div class="col-3" style="padding-right: 5px">
-                      <input type="date" class="form-control" formControlName="setDate" placeholder="">
-                    </div>
-
-                    <div class="col-3" style="text-align: center">
-                      <button (click)="removeConfig(i)" class="btn btn-danger" style="width: 100%; padding: 5px 0">
-                        <i class="fa fa-trash"></i>
-                      </button>
-                    </div>
-                  </div>
+        <div class="col-md-3">
+          <label>Configuration</label>
+        </div>
+        <div class="col-md-9">
+          <div formArrayName="configurationList"
+               *ngFor="let item of deviceForm.get('configurationList').controls; let i = index;">
+            <div>
+              <div [formGroupName]="i" class="row" style="margin-top: 5px">
+                <div class="col-3" style="padding-right: 5px">
+                  <select name="" formControlName="type" class="form-control" [compareWith]="compareByID">
+                    <option *ngFor="let type of typeList" [ngValue]="type">{{type.name}}</option>
+                  </select>
                 </div>
-                <div>
+
+                <div class="col-3" style="padding-right: 5px">
+                  <input class="form-control" formControlName="detail" placeholder="">
+                </div>
+
+                <div class="col-3" style="padding-right: 5px">
+                  <input type="date" class="form-control" formControlName="setDate" placeholder="">
+                </div>
+
+                <div class="col-3" style="text-align: center">
+                  <button (click)="removeConfig(i)" class="btn btn-danger" style="width: 100%; padding: 5px 0">
+                    <i class="fa fa-trash"></i>
+                  </button>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="row" style="margin-top: 10px">
-            <div class="col-3"></div>
-            <div class="col-md-2">
-              <button style="width: 100%;padding: 6px" class="btn btn-primary" (click)="addConfig()">Add</button>
-            </div>
-            <div class="col-2"></div>
-            <div class="col-2"></div>
-            <div class="col-3"></div>
-          </div>
-
-          <div style="margin-top: 5px" class="row">
-            <div class="col-md-3">
-              <label>Campus</label>
-            </div>
-            <div class="col-md-9">
-              <select name="" formControlName="campus" class="form-control" [compareWith]="compareByID"
-                      (change)="loadFloor($event)">
-                <option value="">Choose a campus</option>
-                <option *ngFor="let campus of campusList" [ngValue]="campus">{{campus.name}}</option>
-              </select>
-            </div>
-          </div>
-
-          <div style="margin-top: 5px" class="row">
-            <div class="col-md-3">
-              <label>Floor</label>
-            </div>
-            <div class="col-md-9">
-              <select name="" formControlName="floor" class="form-control" [compareWith]="compareByID"
-                      (change)="loadRoom($event)">
-                <option value="">Choose a floor</option>
-                <option *ngFor="let floor of floorList" [ngValue]="floor">{{floor.name}}</option>
-              </select>
-            </div>
-          </div>
-
-          <div style="margin-top: 5px" class="row">
-            <div class="col-md-3">
-              <label>Room</label>
-            </div>
-            <div class="col-md-9">
-              <select name="" formControlName="room" class="form-control" [compareWith]="compareByID">
-                <option value="">Choose a campus</option>
-                <option *ngFor="let room of roomList" [ngValue]="room">{{room.name}}</option>
-              </select>
+            <div>
             </div>
           </div>
         </div>
-<!--        <div class="col-md-4" style="background-color: antiquewhite"></div>-->
       </div>
-    </form>
-    <div class="row" style="margin-top: 20px">
-      <div class="col-md-2"></div>
-      <div class="col-md-2"></div>
-      <div class="col-md-2"></div>
-      <div class="col-md-2"></div>
-      <div class="col-md-2"></div>
-      <div class="col-md-2">
-        <button class="btn btn-primary" style="width: 100%;padding: 6px" (click)="update()">Update</button>
+
+      <div class="row" style="margin-top: 10px">
+        <div class="col-3"></div>
+        <div class="col-md-2">
+          <button style="width: 100%;padding: 6px" class="btn btn-primary" (click)="addConfig()">Add</button>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-2"></div>
+        <div class="col-3"></div>
+      </div>
+
+      <div style="margin-top: 5px" class="row">
+        <div class="col-md-3">
+          <label>Campus</label>
+        </div>
+        <div class="col-md-9">
+          <select name="" formControlName="campus" class="form-control" [compareWith]="compareByID"
+                  (change)="loadFloor($event)">
+            <option value="">Choose a campus</option>
+            <option *ngFor="let campus of campusList" [ngValue]="campus">{{campus.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-top: 5px" class="row">
+        <div class="col-md-3">
+          <label>Floor</label>
+        </div>
+        <div class="col-md-9">
+          <select name="" formControlName="floor" class="form-control" [compareWith]="compareByID"
+                  (change)="loadRoom($event)">
+            <option value="">Choose a floor</option>
+            <option *ngFor="let floor of floorList" [ngValue]="floor">{{floor.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-top: 5px" class="row">
+        <div class="col-md-3">
+          <label>Room</label>
+        </div>
+        <div class="col-md-9">
+          <select name="" formControlName="room" class="form-control" [compareWith]="compareByID">
+            <option value="">Choose a campus</option>
+            <option *ngFor="let room of roomList" [ngValue]="room">{{room.name}}</option>
+          </select>
+        </div>
       </div>
     </div>
+    <!--        <div class="col-md-4" style="background-color: antiquewhite"></div>-->
+  </div>
+</form>
+<div class="row" style="margin-top: 20px">
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2">
+    <button class="btn btn-primary" style="width: 100%;padding: 6px" (click)="update()">Update</button>
+  </div>
+</div>
 <!--  </div>-->
 <!--</div>-->
 <!--<div class="col-md-2"></div>-->
 
 
-<!--{{deviceForm.value | json}}-->
+{{deviceForm.value | json}}

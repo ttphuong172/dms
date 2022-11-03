@@ -23,6 +23,7 @@ export class DeviceEditComponent implements OnInit {
   roomList: any;
   nameCampusSelected: any;
   nameFloorSelected: any;
+  statusList=['Good', 'Fault']
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -47,6 +48,7 @@ export class DeviceEditComponent implements OnInit {
       model: new FormControl(''),
       serial: new FormControl(''),
       note: new FormControl(''),
+      status: new FormControl(''),
       configurationList: this.formBuilder.array([]),
       campus: new FormControl(''),
       floor: new FormControl(''),
@@ -64,6 +66,7 @@ export class DeviceEditComponent implements OnInit {
         this.deviceForm.controls['model'].setValue(this.device.model)
         this.deviceForm.controls['serial'].setValue(this.device.serial)
         this.deviceForm.controls['note'].setValue(this.device.note)
+        this.deviceForm.controls['status'].setValue(this.device.status)
         for (let i = 0; i < this.device.configurationList.length; i++) {
           this.deviceForm.controls['configurationList'].push(this.setConfiguraton(this.device.configurationList[i].type, this.device.configurationList[i].detail,this.device.configurationList[i].setDate))
         }

@@ -45,7 +45,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
             <scope>compile</scope>
         </dependency>
 
@@ -63,7 +62,7 @@
         <dependency>
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
-            <version>3.0.0</version>
+            <version>3.1.0</version>
         </dependency>
 
     </dependencies>
